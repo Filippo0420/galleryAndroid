@@ -46,16 +46,13 @@ public class MainActivity extends AppCompatActivity {
         });
         simpleImageSwitcher.setImageResource(imageIds[currentIndex]);
 
-        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
-        Animation out = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
-
-        simpleImageSwitcher.setInAnimation(in);
-        simpleImageSwitcher.setOutAnimation(out);
 
 
         btnNext.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                simpleImageSwitcher.setInAnimation(MainActivity.this,R.anim.from_right);
+                simpleImageSwitcher.setOutAnimation(MainActivity.this,R.anim.to_left);
                 currentIndex++;
                 if (currentIndex == count)
                     currentIndex = 0;
@@ -66,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                simpleImageSwitcher.setInAnimation(MainActivity.this,R.anim.from_left);
+                simpleImageSwitcher.setOutAnimation(MainActivity.this,R.anim.to_right);
                 currentIndex--;
                 if (currentIndex < 0)
                     currentIndex = count-1;
